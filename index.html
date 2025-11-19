@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Undangan Pernikahan — Devano & Bernike (v2.1)</title>
+    <meta
+      name="description"
+      content="Undangan Pernikahan Devano & Bernike — Sabtu, 22 November 2025. Pemberkatan & Syukuran."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --black: #0e0e0e;
+        --white: #fff;
+        --gold: #d7b87b;
+        --muted: #cfc4a3;
+        --glass: rgba(255, 255, 255, 0.03);
+        --maxw: 520px;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: Inter, system-ui, Arial;
+        background: var(--black);
+        color: var(--white);
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 16px 120px;
+      }
+
+      /* Loader */
+      #loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        z-index: 9999;
+      }
+      .loader-gold {
+        width: 64px;
+        height: 64px;
+        border: 5px solid rgba(215, 184, 123, 0.18);
+        border-top-color: var(--gold);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .loader-text {
+        margin-top: 14px;
+        font-family: "Great Vibes", cursive;
+        font-size: 28px;
+        color: var(--gold);
+      }
+
+      /* Cover */
+      .cover {
+        height: 86vh;
+        background-image: url("https://images.unsplash.com/photo-1529634806980-cd98a584abab?auto=format&fit=crop&w=1400&q=80");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        text-align: center;
+      }
+      .cover::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.28),
+          rgba(0, 0, 0, 0.6)
+        );
+      }
+      .cover-inner {
+        position: relative;
+        z-index: 3;
+      }
+      .cover-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 28px;
+        color: var(--gold);
+        margin: 0;
+      }
+      .cover-names {
+        font-family: "Great Vibes", cursive;
+        font-size: 44px;
+        color: var(--white);
+        margin-top: 6px;
+        text-shadow: 0 6px 22px rgba(0, 0, 0, 0.6);
+      }
+
+      /* Sections */
+      .section {
+        padding: 26px 0;
+        text-align: center;
+      }
+      h2 {
+        font-family: "Cormorant Garamond", serif;
+        color: var(--gold);
+        margin: 0;
+        font-size: 20px;
+      }
+      p.lead {
+        color: var(--muted);
+        line-height: 1.6;
+        margin: 12px 0;
+      }
+      .divider {
+        height: 1px;
+        width: 70%;
+        margin: 18px auto;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+
+      /* Countdown responsive (v2.1) */
+      #countdown {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+      .cd {
+        background: rgba(255, 255, 255, 0.04);
+        padding: 10px 12px;
+        border-radius: 12px;
+        min-width: 56px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      .cd strong {
+        font-size: 18px;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .cd small {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .done-married {
+        font-size: 18px;
+        color: var(--gold);
+        font-weight: 700;
+      }
+
+      /* Map card */
+      .mapbox {
+        margin-top: 14px;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(215, 184, 123, 0.2);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+        position: relative;
+      }
+      .mapbox iframe {
+        width: 100%;
+        height: 260px;
+        border: 0;
+        pointer-events: none;
+        filter: brightness(0.85) contrast(1.05);
+      }
+      .map-button {
+        display: inline-block;
+        margin-top: 10px;
+        background: var(--gold);
+        color: #111;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      /* Buttons & microinteractions */
+      .btn {
+        background: var(--gold);
+        color: #111;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(215, 184, 123, 0.15);
+      }
+      .shimmer {
+        position: relative;
+        overflow: hidden;
+      }
+      .shimmer::after {
+        content: "";
+        position: absolute;
+        left: -90%;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.6),
+          transparent
+        );
+        transform: skewX(-25deg);
+        animation: shimmer 2.6s linear infinite;
+      }
+      @keyframes shimmer {
+        50% {
+          left: 130%;
+        }
+      }
+
+      /* RSVP popup */
+      #rsvpPopup {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 9998;
+      }
+      .popup {
+        background: #111;
+        padding: 18px;
+        border-radius: 14px;
+        width: 92%;
+        max-width: 380px;
+        border: 1px solid rgba(215, 184, 123, 0.18);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      }
+      .popup input,
+      .popup select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        background: #1b1b1b;
+        color: var(--white);
+        margin-top: 8px;
+      }
+
+      /* back to top */
+      #toTop {
+        position: fixed;
+        right: 16px;
+        bottom: 94px;
+        display: none;
+        z-index: 9999;
+      }
+
+      /* bottom nav */
+      .bottom-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #0b0b0b;
+        border-top: 1px solid rgba(255, 255, 255, 0.03);
+        display: flex;
+        justify-content: space-around;
+        padding: 12px 0;
+        z-index: 9999;
+      }
+      .nav {
+        color: var(--gold);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      /* responsive tweaks */
+      @media (min-width: 640px) {
+        .cover-names {
+          font-size: 64px;
+        }
+        .wrap {
+          max-width: 640px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loader -->
+    <div id="loader">
+      <div class="loader-gold"></div>
+      <div class="loader-text">Devano & Bernike</div>
+    </div>
+
+    <!-- Cover -->
+    <header class="cover" id="home">
+      <div class="cover-inner">
+        <div class="cover-title">Undangan Pernikahan</div>
+        <div class="cover-names">Devano & Bernike</div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="section">
+        <h2>Salam & Pembuka</h2>
+        <p class="lead">
+          Dengan memohon berkat dari Tuhan Yesus, kami bermaksud mengundang
+          Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan putra-putri
+          kami.
+        </p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="mempelai">
+        <h2>Mempelai</h2>
+        <p style="font-family: 'Great Vibes'; font-size: 22px; margin: 6px 0">
+          Devano Andi H
+        </p>
+        <p style="color: var(--gold); font-size: 18px; margin: 6px 0">&</p>
+        <p style="font-family: 'Great Vibes'; font-size: 22px; margin: 6px 0">
+          Bernike Shintia Y
+        </p>
+
+        <div
+          style="
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+          "
+        >
+          <div>
+            <strong>Putra dari:</strong><br />Bapak Y. Haryanto & Ibu Dewi
+          </div>
+          <div style="margin-top: 8px">
+            <strong>Putri dari:</strong><br />Bapak Didik. Y & Ibu Yus Marti
+          </div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="tanggal">
+        <h2>Tanggal & Waktu</h2>
+        <p
+          class="lead"
+          style="
+            font-size: 18px;
+            color: var(--gold);
+            font-weight: 600;
+            margin-top: 8px;
+          "
+        >
+          22 . 11 . 2025
+        </p>
+        <p class="lead"><strong>Pemberkatan:</strong><br />09.00 WIB</p>
+        <p class="lead"><strong>Syukuran:</strong><br />13.00 WIB</p>
+
+        <!-- Countdown v2.1 -->
+        <div id="countdown" aria-live="polite">
+          <div class="cd">
+            <strong id="cd-days">0</strong><small>Hari</small>
+          </div>
+          <div class="cd">
+            <strong id="cd-hours">0</strong><small>Jam</small>
+          </div>
+          <div class="cd">
+            <strong id="cd-minutes">0</strong><small>Menit</small>
+          </div>
+          <div class="cd">
+            <strong id="cd-seconds">0</strong><small>Detik</small>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="pemberkatan">
+        <h2>Tempat Pemberkatan</h2>
+        <p class="lead">GPIB ATK, Gereja<br />Sektor TambakRejo</p>
+        <p class="lead" style="font-size: 14px; opacity: 0.85">
+          Klik peta untuk membuka arah di Google Maps.
+        </p>
+
+        <div class="mapbox">
+          <a
+            href="https://maps.app.goo.gl/NvU93LqJ3m6b28LA8"
+            target="_blank"
+            aria-label="Buka Pemberkatan"
+          ></a>
+          <iframe
+            src="https://www.google.com/maps?q=GPIB%20ATK%20TambakRejo&output=embed"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <a
+          class="map-button"
+          href="https://maps.app.goo.gl/NvU93LqJ3m6b28LA8"
+          target="_blank"
+          >Buka di Google Maps</a
+        >
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="syukuran">
+        <h2>Tempat Syukuran</h2>
+        <p class="lead">Dusun Bejalan Timur RT 09 RW 04</p>
+        <p class="lead" style="font-size: 14px; opacity: 0.85">
+          Klik peta untuk membuka arah di Google Maps.
+        </p>
+
+        <div class="mapbox">
+          <a
+            href="https://maps.app.goo.gl/iF7enXHASjMRKy3A8"
+            target="_blank"
+            aria-label="Buka Syukuran"
+          ></a>
+          <iframe
+            src="https://www.google.com/maps?q=Dusun%20Bejalan%20Timur%20RT%2009%20RW%2004&output=embed"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <a
+          class="map-button"
+          href="https://maps.app.goo.gl/iF7enXHASjMRKy3A8"
+          target="_blank"
+          >Buka di Google Maps</a
+        >
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="rsvp">
+        <h2>Konfirmasi Kehadiran</h2>
+        <p class="lead">Klik tombol untuk konfirmasi via WhatsApp.</p>
+        <button class="btn shimmer" id="openRsvpBtn">Isi RSVP</button>
+      </section>
+    </main>
+
+    <!-- RSVP Popup -->
+    <div id="rsvpPopup">
+      <div class="popup">
+        <h3 style="margin: 0 0 8px 0; color: var(--gold)">
+          Konfirmasi Kehadiran
+        </h3>
+        <input
+          id="rsvpName"
+          placeholder="Nama lengkap"
+          aria-label="Nama lengkap"
+        />
+        <select id="rsvpStatus" aria-label="Status kehadiran">
+          <option value="Hadir">Hadir</option>
+          <option value="Tidak Hadir">Tidak Hadir</option>
+        </select>
+        <input id="rsvpNote" placeholder="Pesan singkat (opsional)" />
+        <div style="display: flex; gap: 8px; margin-top: 12px">
+          <button class="btn shimmer" id="sendRsvpBtn" style="flex: 1">
+            Kirim via WhatsApp
+          </button>
+          <button
+            class="btn"
+            id="closeRsvpBtn"
+            style="background: #333; color: white"
+          >
+            Batal
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <button id="toTop">Atas</button>
+
+    <!-- Bottom nav -->
+    <nav class="bottom-bar">
+      <a class="nav" href="#home">Home</a>
+      <a class="nav" href="#tanggal">Tanggal</a>
+      <a class="nav" href="#rsvp">RSVP</a>
+    </nav>
+
+    <script>
+      // Loader
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          const l = document.getElementById("loader");
+          if (l) l.style.opacity = "0";
+          setTimeout(() => l && l.remove(), 600);
+        }, 700);
+      });
+
+      // Countdown (v2.1) timezone + safety
+      (function () {
+        const target = new Date("2025-11-22T09:00:00+07:00").getTime();
+        const dEl = document.getElementById("cd-days");
+        const hEl = document.getElementById("cd-hours");
+        const mEl = document.getElementById("cd-minutes");
+        const sEl = document.getElementById("cd-seconds");
+        const parent = document.getElementById("countdown");
+        function tick() {
+          const now = Date.now();
+          let diff = target - now;
+          if (diff <= 0) {
+            parent.innerHTML =
+              '<div class="done-married">We\'re married! 💍✨</div>';
+            clearInterval(timer);
+            return;
+          }
+          const d = Math.floor(diff / 86400000);
+          const h = Math.floor((diff % 86400000) / 3600000);
+          const m = Math.floor((diff % 3600000) / 60000);
+          const s = Math.floor((diff % 60000) / 1000);
+          dEl.textContent = d;
+          hEl.textContent = h;
+          mEl.textContent = m;
+          sEl.textContent = s;
+        }
+        tick();
+        const timer = setInterval(tick, 1000);
+      })();
+
+      // Maps: nothing else needed (iframe preview + clickable overlay)
+
+      // RSVP popup handlers
+      const openRsvpBtn = document.getElementById("openRsvpBtn");
+      const rsvpPopup = document.getElementById("rsvpPopup");
+      const closeRsvpBtn = document.getElementById("closeRsvpBtn");
+      const sendRsvpBtn = document.getElementById("sendRsvpBtn");
+
+      openRsvpBtn.addEventListener("click", () => {
+        rsvpPopup.style.display = "flex";
+        document.getElementById("rsvpName").focus();
+      });
+      closeRsvpBtn.addEventListener("click", () => {
+        rsvpPopup.style.display = "none";
+      });
+      sendRsvpBtn.addEventListener("click", () => {
+        const name = document.getElementById("rsvpName").value.trim();
+        const status = document.getElementById("rsvpStatus").value;
+        const note = document.getElementById("rsvpNote").value.trim();
+        if (!name) {
+          alert("Mohon masukkan nama lengkap.");
+          document.getElementById("rsvpName").focus();
+          return;
+        }
+        const msg = `Halo, saya *${name}* konfirmasi *${status}* untuk acara Devano & Bernike.${
+          note ? " Pesan: " + note : ""
+        }`;
+        const wa = `https://wa.me/6285842592607?text=${encodeURIComponent(
+          msg
+        )}`;
+        window.open(wa, "_blank");
+        rsvpPopup.style.display = "none";
+      });
+
+      // back to top
+      const toTop = document.getElementById("toTop");
+      window.addEventListener("scroll", () => {
+        toTop.style.display = window.scrollY > 260 ? "block" : "none";
+      });
+      toTop.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      );
+
+      // microinteraction: vibration on click (if available)
+      document.addEventListener("click", (e) => {
+        const t = e.target.closest(".btn, .map-button");
+        if (!t) return;
+        if (navigator.vibrate) navigator.vibrate(30);
+      });
+
+      // accessibility: close popup with ESC
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") rsvpPopup.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
